@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "node",
+		"baseUrl": "./",
+		"allowJs": true,
+		"outDir": "./dist",
+		"module": "esnext",
+		"target": "esnext",
+		"checkJs": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"paths": {
+			"@/*": ["src/*"],
+		},
+		"plugins": [
+			{ "transform": "typescript-transform-paths" },
+            { "transform": "typescript-transform-paths", "afterDeclarations": true }
+		],
+	},
+	"include": [
+		"src/**/*",
+	],
+	"exclude": [
+		"node_modules/*",
+		"doc/*",
+		"dist/*",
+	],
+}
