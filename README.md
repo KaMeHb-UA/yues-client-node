@@ -5,6 +5,6 @@ While you're reading this text we're suffering from russia's bombs. Please help 
 ## YueS client for Node.js
 
 Simple low-level library to help to connect and use fast and reliable YueS GUI server.  
-Written in Typescript without external dependencies.  
+Written in [Typescript](https://www.typescriptlang.org) without external dependencies.  
 Since it's a low-level library, it's meant to be used as a dependency while creating your own high-level GUI libraries. Do not use this library directly in your apps.  
 Builds itself using [tsup](https://tsup.egoist.dev).
