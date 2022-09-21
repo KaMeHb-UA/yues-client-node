@@ -2,7 +2,7 @@ import { PseudoFunc } from '@/utils';
 import { MessagingInterface } from '@/messaging';
 
 class ServerLuaFunctionConstructor extends PseudoFunc {
-    private ref: string;
+    ref: string;
 
     initialized: Promise<boolean> | boolean = this.init();
 
@@ -40,8 +40,9 @@ const ServerLuaFunction: {
 type ImplementedFunc<A extends any[], R> = (...args: A) => Promise<R>;
 
 interface ServerLuaFunction<A extends any[] = any[], R = any> extends ImplementedFunc<A, R> {
-    initialized: Promise<boolean> | boolean
-    destroy(): Promise<void>
+    ref: string;
+    initialized: Promise<boolean> | boolean;
+    destroy(): Promise<void>;
 }
 
 export { ServerLuaFunction }
