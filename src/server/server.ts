@@ -56,7 +56,6 @@ export class Server {
     async createFunction(body: string, args: string[]) {
         if (!await this.initialized) throw new Error('Server not initialized');
         const func = new ServerLuaFunction(this[messagingInterface], body, args);
-        await func.initialized;
         if (!await func.initialized) throw new Error('Function not initialized');
         return func;
     }
