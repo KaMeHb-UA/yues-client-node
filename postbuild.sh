@@ -49,7 +49,7 @@ read -r -d '' package_json_text <<EOF
 	"main": "index.cjs",
 	"module": "index.js",
 	"license": "MIT",
-    "repository": "github:KaMeHb-UA/yues-client-node",
+	"repository": "github:KaMeHb-UA/yues-client-node",
 	"engines" : {
 		"node" : ">=18.0.0"
 	}
