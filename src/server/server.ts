@@ -53,11 +53,21 @@ export class Server {
         await exitEvent;
     }
 
-    async createFunction(body: string, args: string[]) {
+    async createFunction(
+        body: string,
+        args: string[],
+        wrapper?: (func: ServerLuaFunction, ...args: any[]) => Promise<any>,
+    ): Promise<ServerLuaFunction> {
         if (!await this.initialized) throw new Error('Server not initialized');
         const func = new ServerLuaFunction(this[messagingInterface], body, args);
         if (!await func.initialized) throw new Error('Function not initialized');
-        return func;
+        if (!wrapper) return func;
+        const wrapped = (...args: any[]) => wrapper(func, ...args);
+        return Object.defineProperties(wrapped, {
+            ref: { get: () => func.ref },
+            initialized: { get: () => func.initialized },
+            destroy: { get: () => func.destroy },
+        }) as any;
     }
 
     async exec(body: string, argNames?: string[], args?: any[]) {
