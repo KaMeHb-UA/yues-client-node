@@ -1,7 +1,7 @@
 import { PseudoFunc } from '@/utils';
 import { MessagingInterface } from '@/messaging';
 
-export class ServerLuaFunction extends PseudoFunc {
+class ServerLuaFunctionConstructor extends PseudoFunc {
     private ref: string;
 
     initialized: Promise<boolean> | boolean = this.init();
@@ -32,3 +32,16 @@ export class ServerLuaFunction extends PseudoFunc {
         return `function (${this.args.join(', ')})\n${this.body}\nend`;
     }
 }
+
+const ServerLuaFunction: {
+    new(messaging: MessagingInterface, body: string, args: string[]): ServerLuaFunction;
+} = ServerLuaFunctionConstructor as any;
+
+type ImplementedFunc<A extends any[], R> = (...args: A) => Promise<R>;
+
+interface ServerLuaFunction<A extends any[] = any[], R = any> extends ImplementedFunc<A, R> {
+    initialized: Promise<boolean> | boolean
+    destroy(): Promise<void>
+}
+
+export { ServerLuaFunction }
