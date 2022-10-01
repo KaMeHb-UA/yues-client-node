@@ -44,7 +44,7 @@ export class MessagingInterface {
     };
 
     private send(message: ClientSentMessage) {
-        this[stdin].write(JSON.stringify(message));
+        this[stdin].write(JSON.stringify(message) + '\n');
     }
 
     private async once(event: string) {
