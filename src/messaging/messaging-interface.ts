@@ -13,6 +13,7 @@ export class MessagingInterface {
     initialized: Promise<boolean> | boolean;
 
     constructor(inFifo: string, outFifo: string) {
+        this.ee.setMaxListeners(Infinity);
         this[stdin] = createWriteStream(inFifo);
         this[stdout] = createReadStream(outFifo);
         this[stdout].on('data', this.onNextBuf);
