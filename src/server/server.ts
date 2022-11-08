@@ -66,7 +66,7 @@ export class Server {
         return Object.defineProperties(wrapped, {
             ref: { get: () => func.ref },
             initialized: { get: () => func.initialized },
-            destroy: { get: () => func.destroy },
+            destroy: { get: () => func.destroy.bind(func) },
         }) as any;
     }
 
